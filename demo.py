@@ -82,23 +82,23 @@ if __name__ == "__main__":
     )
     # log_scale = st.sidebar.checkbox("Logarithmic x axis", value=False)
 
-    st.subheader(r"Effective False-Alarm Rate")
-    st.write(
+    tab1, tab2 = st.tabs(["Effective False-Alarm Rate", "Accuracy"])
+
+    tab1.write(
         r"The following plot shows the effective rate of false alarms "
         r"$\Pr[E = -1 \mid D = +1]$, "
         r"which is the inverse of the positive predictive value."
     )
-    st.write(
+    tab1.write(
         "Whenever the base rate is much lower than FPR, "
         "the majority of detections are false alarms:"
     )
     fig = plot_false_alarms(tpr / 100, fpr / 100)
-    st.pyplot(fig)
+    tab1.pyplot(fig)
 
-    st.subheader(r"Accuracy")
-    st.write(
+    tab2.write(
         "The following plot shows accuracy instead. Observe how accuracy is completely misleading as "
         "it obscures the effect of drowning in false alarms."
     )
     fig = plot_acc(tpr / 100, fpr / 100)
-    st.pyplot(fig)
+    tab2.pyplot(fig)
